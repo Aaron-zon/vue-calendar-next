@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-const test = ref(1)
+
+const COMPONENT_NAME = 'VnCalendar'
+defineOptions({ name: COMPONENT_NAME })
+
+
+
 
 </script>
 
 <template>
-    <div>Hello World {{ test }}</div>
+    <div></div>
 </template>
 
 <style lang="scss" scoped>

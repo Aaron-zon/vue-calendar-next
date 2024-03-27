@@ -8,7 +8,8 @@
 
     "baseUrl": ".",
     "paths": {
-      // "@/*": ["./src/*"]
+      "@vue-calendar-next": ["./package/index.ts"],
+      "@vue-calendar-next/*": ["./package/*"]
     }
   }
 }

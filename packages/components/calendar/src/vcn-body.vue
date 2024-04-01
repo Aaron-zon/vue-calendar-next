@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div>today</div>
+    <div>body</div>
 </template>
 
 <style lang="scss" scoped>

@@ -1,2 +1,2 @@
-export { default as Cn } from './zh-cn'
-export { Language } from './type'
+export { default as zhCn } from './zh-cn'
+export type { Language } from './type'

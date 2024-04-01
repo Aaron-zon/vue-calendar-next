@@ -12,6 +12,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@vue-calendar-next': fileURLToPath(new URL('../packages', import.meta.url)),
+      '@vue-calendar-next/utils': fileURLToPath(new URL('../packages/utils', import.meta.url)),
     }
   }
 })

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import HeaderButtonGroup from './components/header/index.vue'
+import HeaderGroup from './vcn-header-group.vue'
+import Body from './vcn-body.vue'
 
 const COMPONENT_NAME = 'VnCalendar'
 defineOptions({ name: COMPONENT_NAME })
@@ -11,13 +12,13 @@ defineOptions({ name: COMPONENT_NAME })
         <div class="vn-header">
             <div class="vn-header__button--group">
                 <slot>
-                    <HeaderButtonGroup></HeaderButtonGroup>
+                    <HeaderGroup></HeaderGroup>
                 </slot>
             </div>
 
         </div>
         <div class="vn-body">
-
+            <Body></Body>
         </div>
     </div>
 </template>

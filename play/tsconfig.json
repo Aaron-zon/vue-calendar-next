@@ -8,7 +8,9 @@
         "paths": {
             "@/*": ["./play/src/*"],
             "@vue-calendar-next": ["./packages/index.ts"],
+            "@vue-calendar-next/utils": ["./packages/utils/index.ts"],
             "@vue-calendar-next/*": ["./packages/*"],
+
 
         }
     }

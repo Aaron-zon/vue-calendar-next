@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from './hooks/use-local'
-import dayjs from 'dayjs';
 
 const props = defineProps<{date: any}>()
 
 const { t } = useLocale()
 
 const i18nMonthDate = computed(() => {
-    const month = t(`el.datepicker.month.${props.date.value.format('M')}`)
-    const year = `${props.date.value.year()}${t('el.datepicker.year')}`
+    const month = t(`el.datepicker.month.${props.date.format('M')}`)
+    const year = `${props.date.year()}${t('el.datepicker.year')}`
     return `${month} ${year}`
 })
 </script>

@@ -1,10 +1,13 @@
-<script lang="ts" setup>
+<script lang="ts" setup >
 import HeaderGroup from './vcn-header-group.vue'
 import Body from './vcn-body.vue'
 
 const COMPONENT_NAME = 'VnCalendar'
 defineOptions({ name: COMPONENT_NAME })
 
+const props = defineProps<{
+    modelValue: string
+}>()
 </script>
 
 <template>
@@ -12,7 +15,7 @@ defineOptions({ name: COMPONENT_NAME })
         <div class="vn-header">
             <div class="vn-header__button--group">
                 <slot>
-                    <HeaderGroup></HeaderGroup>
+                    <HeaderGroup v-model="props.modelValue"></HeaderGroup>
                 </slot>
             </div>
 

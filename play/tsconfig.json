@@ -5,6 +5,7 @@
         "jsx": "react",
         "baseUrl": "../",
         "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
         "paths": {
             "@/*": ["./play/src/*"],
             "@vue-calendar-next": ["./packages/index.ts"],

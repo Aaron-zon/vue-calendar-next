@@ -63,6 +63,9 @@ importers:
 
   play:
     dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       vue:
         specifier: ^3.4.21
         version: 3.4.21(typescript@5.4.3)

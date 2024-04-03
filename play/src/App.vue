@@ -1,11 +1,11 @@
 <script setup lang="ts">
-
+import { ref } from 'vue'
+const date = ref('2024/04/02')
 </script>
 
 <template>
   <div class="play">
-    <VnCalendar>
-    </VnCalendar>
+    <VnCalendar v-model:modelValue="date"></VnCalendar>
   </div>
 </template>
 

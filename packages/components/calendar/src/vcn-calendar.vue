@@ -5,9 +5,13 @@ import Body from './vcn-body.vue'
 const COMPONENT_NAME = 'VnCalendar'
 defineOptions({ name: COMPONENT_NAME })
 
+const model = defineModel()
 const props = defineProps<{
-    modelValue: string
+  modelValue: any,
+  range?: any[]
 }>()
+
+
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const props = defineProps<{
         <div class="vn-header">
             <div class="vn-header__button--group">
                 <slot>
-                    <HeaderGroup v-model="props.modelValue"></HeaderGroup>
+                    <HeaderGroup v-model="model" :range="props.range"></HeaderGroup>
                 </slot>
             </div>
 

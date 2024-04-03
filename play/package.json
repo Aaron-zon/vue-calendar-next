@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "lodash-es": "^4.17.21",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

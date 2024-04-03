@@ -1,5 +1,12 @@
-<script setup>
+<script setup lang="ts">
+import { computed } from 'vue'
+const props = defineProps<{
+    icon?: any
+}>()
 
+const isIcon = computed(() => {
+    return props.icon != null
+})
 </script>
 
 <template>

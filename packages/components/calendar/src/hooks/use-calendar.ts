@@ -9,8 +9,6 @@ import type { Dayjs } from 'dayjs'
 const { lang } = useLocale()
 const now = dayjs().locale(lang.value)
 
-
-
 export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
 
     const selectedDay = ref()
@@ -104,7 +102,7 @@ export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
         }
     }
 
-    const adjacentMonth = (start, end) => {
+    const adjacentMonth = (start: Dayjs, end: Dayjs) => {
         // the last day of the start month
         const firstMonthLastDay = start.endOf('month')
         // the first day of the end month

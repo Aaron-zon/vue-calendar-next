@@ -9,6 +9,9 @@
     "baseUrl": ".",
     "paths": {
       "@vue-calendar-next": ["./package/index.ts"],
+      "@vue-calendar-next/utils": ["./packages/utils/index.ts"],
+      "@vue-calendar-next/hooks": ["./packages/hooks/index.ts"],
+      "@vue-calendar-next/components": ["./packages/components/index.ts"],
       "@vue-calendar-next/*": ["./package/*"]
     }
   }

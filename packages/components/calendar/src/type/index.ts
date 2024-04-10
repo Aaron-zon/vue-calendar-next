@@ -1,13 +1,10 @@
 export interface HeaderGroup {
-    modelValue?: string
+    date: any
+    modelValue?: any
     range?: any[]
-    headerLayout?: HeaderGroupLayout
-    headerToolbar?: Record<string, ButtonStyle> | string
+    headerLayout?: Record<string , string | null>
+    headerToolbar?: Record<string, ButtonStyle | string>
 }
-
-export type HeaderGroupLayout = Record<GroupLayoutKey , string | null>
-
-export type GroupLayoutKey = 'left' | 'right' | 'center'
 
 export type ButtonStyle = {
     text?: string,
@@ -16,3 +13,10 @@ export type ButtonStyle = {
     callback?: Function | null,
 }
 
+export interface DateTableBody {
+    selectedDay: any
+    range: any[]
+    date: any
+    hideHeader: boolean
+    events: any[]
+}

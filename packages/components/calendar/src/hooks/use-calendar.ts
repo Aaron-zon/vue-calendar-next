@@ -164,6 +164,8 @@ export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
     */
     const selectDate = (type: string) => {
         const dateMap = {
+            'prev': prevMonthDayjs.value,
+            'next': nextMonthDayjs.value,
             'prev-month': prevMonthDayjs.value,
             'next-month': nextMonthDayjs.value,
             'prev-year': prevYearDayjs.value,
@@ -174,7 +176,7 @@ export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
         const day = dateMap[type];
 
         // check if the date used for current display is the same as today's date
-        if (!day.isSame(date.value, 'day')) {
+        if (day && !day.isSame(date.value, 'day')) {
             pickDay(day)
         }
     }
@@ -185,4 +187,21 @@ export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
         selectDate,
         pickDay,
     }
+}
+
+// type 
+export type VcnCalendarEmit = Function
+
+export interface VcnCalendarProps {
+    modelValue?: Date | string,
+    range?: string[]
+    headerLayout?: Record<string , string | null>
+    toolbarInfo?: Record<string, ToolbarInfo | string>
+}
+
+export type ToolbarInfo = {
+    text?: string,
+    icon?: string,
+    class?: string | string[]
+    callback?: Function | null,
 }

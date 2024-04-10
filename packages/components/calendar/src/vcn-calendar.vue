@@ -78,7 +78,7 @@ const vcnHeaderGroupProps = computed(() => {
 
         </div>
         <div class="vn-body">
-            <VcnDateTable :date="date" :selected-day="realSelectedDay" @pick="pickDay" />
+            <VcnDateTable :date="date" :selected-day="realSelectedDay" :events="props.events" @pick="pickDay" />
         </div>
     </div>
 </template>

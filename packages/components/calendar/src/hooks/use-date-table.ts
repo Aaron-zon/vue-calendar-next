@@ -1,17 +1,25 @@
 import { computed } from 'vue'
 import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
-import { useLocale } from './use-local'
+import { useLocale } from '@vue-calendar-next/hooks'
 import { rangeArr, getPrevMonthLastDays, getMonthDays, toNestedArr } from './use-utils'
 
 import type { ComputedRef} from 'vue'
 import type { Dayjs } from 'dayjs'
+import type { EventList, EventType } from './use-calendar'
 
 export interface DateTableProps {
     date: Dayjs
     selectedDay: ComputedRef
     range?: [Dayjs, Dayjs]
     events?: EventList
+}
+
+export type CalendarDateCellType = 'next' | 'prev' | 'current'
+
+export type CalendarDateCell = {
+    text: number
+    type: CalendarDateCellType
 }
 
 const { t } = useLocale();
@@ -37,9 +45,9 @@ export const useDateTable = (props: DateTableProps) => {
 
     const rows = computed(() => {
         // used to store all dates displayed on the screen.
-        let days: CalendarDateCell[] = [];
+        let days: CalendarDateCell[];
 
-        // when there is date range information, retrieve values ​​based on the date range.
+        // when there is date range information, retrieve values based on the date range.
         if (isInRange.value) {
             const [start, end] = props.range!;
             const currentMonthRange: CalendarDateCell[] = rangeArr(
@@ -168,18 +176,4 @@ export const useDateTable = (props: DateTableProps) => {
     }
 }
 
-export type CalendarDateCellType = 'next' | 'prev' | 'current'
 
-export type CalendarDateCell = {
-    text: number
-    type: CalendarDateCellType
-}
-
-export type EventList = EventType[]
-
-export type EventType = {
-    start: string
-    title: string
-    end?: string
-    time?: string
-}

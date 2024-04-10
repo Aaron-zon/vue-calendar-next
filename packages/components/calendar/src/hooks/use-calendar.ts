@@ -1,15 +1,40 @@
 import { ref, computed } from 'vue'
 import dayjs from 'dayjs'
-import { useLocale } from './use-local'
+import { useLocale } from '@vue-calendar-next/hooks'
 
 import type { ComputedRef } from 'vue'
-import type { CalendarProps, CalendarEmit } from './type'
 import type { Dayjs } from 'dayjs'
+
+export type VcnCalendarEmit = Function
+
+export interface VcnCalendarProps {
+    modelValue?: Date | string,
+    range?: string[]
+    headerLayout?: Record<string , string | null>
+    toolbarInfo?: Record<string, ToolbarInfo | string>
+    events?: EventList
+}
+
+export type ToolbarInfo = {
+    text?: string,
+    icon?: string,
+    class?: string | string[]
+    callback?: Function | null,
+}
+
+export type EventList = EventType[]
+
+export type EventType = {
+    start: string
+    title: string
+    end?: string
+    time?: string
+}
 
 const { lang } = useLocale()
 const now = dayjs().locale(lang.value)
 
-export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
+export const useCalendar = (props: VcnCalendarProps, emit: VcnCalendarEmit) => {
 
     const selectedDay = ref()
 
@@ -190,18 +215,3 @@ export const useCalendar = (props: CalendarProps, emit: CalendarEmit) => {
 }
 
 // type 
-export type VcnCalendarEmit = Function
-
-export interface VcnCalendarProps {
-    modelValue?: Date | string,
-    range?: string[]
-    headerLayout?: Record<string , string | null>
-    toolbarInfo?: Record<string, ToolbarInfo | string>
-}
-
-export type ToolbarInfo = {
-    text?: string,
-    icon?: string,
-    class?: string | string[]
-    callback?: Function | null,
-}

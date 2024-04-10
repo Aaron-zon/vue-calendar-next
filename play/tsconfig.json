@@ -9,10 +9,11 @@
         "paths": {
             "@/*": ["./play/src/*"],
             "@vue-calendar-next": ["./packages/index.ts"],
+            "@vue-calendar-next/*": ["./packages/*"],
             "@vue-calendar-next/utils": ["./packages/utils/index.ts"],
             "@vue-calendar-next/hooks": ["./packages/hooks/index.ts"],
             "@vue-calendar-next/components": ["./packages/components/index.ts"],
-            "@vue-calendar-next/*": ["./packages/*"],
+            "@vue-calendar-next/locale": ["./packages/locale/index.ts"],
         }
     }
   }

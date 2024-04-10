@@ -1,6 +1,6 @@
 import { computed, ref, unref, isRef } from 'vue'
 import { get } from 'lodash-es'
-import { zhCn, type Language} from '../local'
+import { zhCn, type Language} from '@vue-calendar-next/locale'
 
 export type TranslatorOption = Record<string, string | number>
 import type { Ref, ComputedRef } from 'vue'

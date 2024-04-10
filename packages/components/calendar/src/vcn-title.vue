@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLocale } from './hooks/use-local'
+import { useLocale } from '@vue-calendar-next/hooks'
 
 const props = defineProps<{date: any}>()
 

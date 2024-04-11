@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<VcnCalendarProps>(), {
     headerLayout: () => ({
         left: 'prev,next today',
         center: 'title',
+        right: ''
     }),
     toolbarInfo: () => ({
         prev: '上一月',
@@ -86,8 +87,5 @@ const vcnHeaderGroupProps = computed(() => {
 <style lang="scss" scoped>
 .vn-calendar {
     border: 1px solid black;
-    // width: max-content;
-    // height: max-content;
-    background-color: #eee;
 }
 </style>

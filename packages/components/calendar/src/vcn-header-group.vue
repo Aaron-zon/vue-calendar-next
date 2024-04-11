@@ -10,8 +10,8 @@ defineProps<{
 </script>
 
 <template>
-    <div class="header">
-        <div v-for="(group, groupName) in layout" :key="groupName" :class="groupName">
+    <div class="vcn-header-group">
+        <div v-for="(group, groupName) in layout" :key="groupName" class="group" :class="groupName">
             <template v-for="item in group">
                 <component v-for="sub in item"
                            :key="sub"
@@ -25,5 +25,14 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+.vcn-header-group {
+    display: flex;
 
+    .group {
+        flex: 1;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+}
 </style>

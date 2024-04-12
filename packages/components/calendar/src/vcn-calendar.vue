@@ -60,6 +60,8 @@ const vcnHeaderGroupProps = computed(() => {
         merge(toolbarInfo[toolName].emit, {selectDate})
     }
 
+    console.log(layout)
+
     return {
         layout,
         toolbarInfo
@@ -69,23 +71,45 @@ const vcnHeaderGroupProps = computed(() => {
 </script>
 
 <template>
-    <div class="vn-calendar">
-        <div class="vn-header">
-            <div class="vn-header__button--group">
-                <slot>
-                    <VcnHeaderGroup v-bind="vcnHeaderGroupProps" ></VcnHeaderGroup>
-                </slot>
-            </div>
-
+    <div class="vcn-calendar">
+        <div class="vcn-header">
+            <slot>
+                <VcnHeaderGroup v-bind="vcnHeaderGroupProps" ></VcnHeaderGroup>
+            </slot>
         </div>
-        <div class="vn-body">
+        <div class="vcn-body">
             <VcnDateTable :date="date" :selected-day="realSelectedDay" :events="props.events" @pick="pickDay" />
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.vn-calendar {
-    border: 1px solid black;
+.vcn-calendar {
+    //--fc-bg-color: #fff;
+    --vcn-button-bg-color: #2c3e50;
+    --vcn-button-border-color: #2c3e50;
+    --fc-button-text-color: #fff;
+    //--fc-button-hover-bg-color: #1e2b37;
+    //--fc-button-hover-border-color: #1a252f;
+    //--fc-button-active-bg-color: #1a252f;
+    //--fc-button-active-border-color: #151e27;
+    //--fc-a-hover-border-color: #151e27;
+    //--fc-today-text-color: #409eff;
+    //--fc-selected-text-color: #409eff;
+    //--fc-calendar-selected-bg-color: #ecf5ff;
+
+    //--fc-daygrid-event-dot-width: 8px;
+    //--fc-event-border-color: #3788d8;
+    //--fc-event-bg-color: #3788d8;
+    //--fc-event-text-color: #fff;
+
+    .vcn-header {
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+    }
 }
+
 </style>

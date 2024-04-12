@@ -12,8 +12,8 @@ const date = ref('2024/04/02')
 <style scoped>
 .play {
     border: 1px solid black;
-    width: 500px;
-    height: 500px;
+    width: 800px;
+    //height: 500px;
     margin: 100px auto;
 }
 </style>

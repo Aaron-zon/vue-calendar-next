@@ -14,9 +14,8 @@ defineOptions({ name: COMPONENT_NAME })
 
 const props = withDefaults(defineProps<VcnCalendarProps>(), {
     headerLayout: () => ({
-        left: 'prev,next today',
         center: 'title',
-        right: ''
+        right: 'today prev,next',
     }),
     toolbarInfo: () => ({
         prev: '上一月',
@@ -26,7 +25,7 @@ const props = withDefaults(defineProps<VcnCalendarProps>(), {
 })
 const emit = defineEmits(['update:modelValue', 'input']);
 
-const { date, selectDate, realSelectedDay, pickDay } = useCalendar(props, emit)
+const { date, selectDate, realSelectedDay, validatedRange, pickDay } = useCalendar(props, emit)
 const { toolbarList, defToolbarInfo, layoutAnalysis } = useToolbar(props)
 
 const headerLayoutAnalysis = computed((): Layout => {
@@ -60,14 +59,11 @@ const vcnHeaderGroupProps = computed(() => {
         merge(toolbarInfo[toolName].emit, {selectDate})
     }
 
-    console.log(layout)
-
     return {
         layout,
         toolbarInfo
     }
 })
-
 </script>
 
 <template>
@@ -78,33 +74,32 @@ const vcnHeaderGroupProps = computed(() => {
             </slot>
         </div>
         <div class="vcn-body">
-            <VcnDateTable :date="date" :selected-day="realSelectedDay" :events="props.events" @pick="pickDay" />
+            <template v-if="validatedRange.length === 0">
+                <VcnDateTable :date="date" :selected-day="realSelectedDay" :events="props.events" @pick="pickDay" />
+            </template>
+            <template v-else>
+                <VcnDateTable v-for="(range_, index) in validatedRange"
+                              :key="index"
+                              :data="range_[0]"
+                              :selected-day="realSelectedDay"
+                              :range="range_"
+                              :hide-header="index !== 0"
+                              @pick="pickDay" />
+            </template>
         </div>
     </div>
 </template>
 
+<style lang="scss">
+@import "./style/base";
+</style>
 <style lang="scss" scoped>
 .vcn-calendar {
-    //--fc-bg-color: #fff;
-    --vcn-button-bg-color: #2c3e50;
-    --vcn-button-border-color: #2c3e50;
-    --fc-button-text-color: #fff;
-    //--fc-button-hover-bg-color: #1e2b37;
-    //--fc-button-hover-border-color: #1a252f;
-    //--fc-button-active-bg-color: #1a252f;
-    //--fc-button-active-border-color: #151e27;
-    //--fc-a-hover-border-color: #151e27;
-    //--fc-today-text-color: #409eff;
-    //--fc-selected-text-color: #409eff;
-    //--fc-calendar-selected-bg-color: #ecf5ff;
-
-    //--fc-daygrid-event-dot-width: 8px;
-    //--fc-event-border-color: #3788d8;
-    //--fc-event-bg-color: #3788d8;
-    //--fc-event-text-color: #fff;
+    background-color: var(--vcn-bg-color);
+    background-color: #fff;
+    padding: 12px;
 
     .vcn-header {
-        border: 1px solid black;
         display: flex;
         justify-content: space-between;
         align-items: center;

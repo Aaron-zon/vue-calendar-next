@@ -62,5 +62,16 @@ defineProps<{
         }
     }
 
+    .leftGroup {
+        justify-content: left;
+    }
+
+    .centerGroup {
+        justify-content: center;
+    }
+
+    .rightGroup {
+        justify-content: right;
+    }
 }
 </style>

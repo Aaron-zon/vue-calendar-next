@@ -46,7 +46,18 @@ const select = () => {
     &__primary {
         background-color: var(--vcn-button-bg-color);
         border-color: var(--vcn-button-border-color);
-        color: var(--fc-button-text-color);
+        color: var(--vcn-button-text-color);
+
+        &:hover {
+            background-color: var(--vcn-button-hover-bg-color);
+            border-color: var(--vcn-button-hover-border-color);
+        }
+
+        &:active {
+            background-color: var(--vcn-button-active-bg-color);
+            border-color: var(--vcn-button-active-border-color);
+            box-shadow: var(--vcn-button-active-box-shadow);
+        }
     }
 }
 </style>

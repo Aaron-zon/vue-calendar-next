@@ -18,6 +18,15 @@ const colClass = (cell: CalendarDateCell) => {
     }
 }
 
+const cellClass = (cell: CalendarDateCell) => {
+    const {type, text} = cell;
+    return {
+        'vcn-current-date': type == 'current',
+        'is-today': (props.date.format('YYYYMM') + text) == dayjs().format('YYYYMMDD'),
+        'is-selected': props.date.date() == text && type == 'current',
+    }
+}
+
 const pickDay = (cell: CalendarDateCell) => {
     let selectedDate = props.date;
     if (cell.type == 'prev') {
@@ -65,27 +74,27 @@ const eventClass = (event: EventType) => {
 <template>
     <table class="vcn-date-table">
         <thead>
-            <tr>
-                <th v-for="(item, index) in weekDays" :key="index">{{ item }}</th>
+            <tr class="vcn-h-row vcn-row">
+                <th class="vcn-h-col vcn-col" v-for="(item, index) in weekDays" :key="index">{{ item }}</th>
             </tr>
         </thead>
 
         <tbody>
             <tr class="vcn-row" v-for="(row, index) in rows" :key="index">
-                <td v-for="(cell, key) in row" :key="key" 
+                <td v-for="(cell, key) in row" :key="key"
                     class="vcn-col" :class="colClass(cell)"
                     @click="pickDay(cell)"
                 >
-                    <div class="vcn-daygrid-day-frame">
-                        <div class="vcn-daygrid-day-top">
-                            <a href="#" class="vcn-daygrid-day-number">{{ cell.text }}</a>
+                    <div class="vcn-day-grid-day-frame">
+                        <div class="vcn-day-grid-day-top" :class="cellClass(cell)">
+                            <a href="#" class="vcn-day-grid-day-number">{{ cell.text }}</a>
                         </div>
 
-                        <div class="vcn-daygrid-day-events">
+                        <div class="vcn-day-grid-day-events">
                             <template v-if="eventManage(cell)">
-                                <div class="vcn-daygrid-event-harness" v-for="(event, index) in eventMap[cell.date]" :key="index">
+                                <div class="vcn-day-grid-event-harness" v-for="(event, index) in eventMap[cell.date]" :key="index">
                                     <a href="#" :class="['vcn-event', ...eventClass(event)]">
-                                        <div class="vcn-daygrid-event-dot"></div>
+                                        <div class="vcn-day-grid-event-dot"></div>
                                         <div class="vcn-event-time">{{ event.time }}</div>
                                         <div class="vcn-event-title">{{ event.title }}</div>
                                     </a>
@@ -93,7 +102,7 @@ const eventClass = (event: EventType) => {
                             </template>
                         </div>
                     </div>
-                    
+
                 </td>
             </tr>
         </tbody>
@@ -101,5 +110,60 @@ const eventClass = (event: EventType) => {
 </template>
 
 <style lang="scss" scoped>
+.vcn-date-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
 
+    .vcn-row {
+        display: flex;
+        width: 100%;
+
+        .vcn-col {
+            flex: 1;
+            border: 1px solid var(--vcn-border-color);
+            margin-left: -1px;
+            margin-top: -1px;
+
+            .vcn-day-grid-day-frame {
+                height: var(--vcn-calendar-cell-width);
+
+                .vcn-day-grid-day-top {
+                    user-select: none;
+                    box-sizing: border-box;
+                    padding: 0 5px;
+                    margin: 3px 0;
+                    text-align: right;
+                    height: 24px;
+                    opacity: .3;
+
+                    .vcn-day-grid-day-number {
+                        user-select: none;
+
+                        &:hover {
+                            border-bottom: 1px solid var(--vcn-a-hover-border-color);
+                        }
+                    }
+                }
+
+                .vcn-current-date {
+                    opacity: 1;
+                }
+
+                .is-today {
+                    color: var(--vcn-today-text-color);
+                    font-weight: 600;
+                }
+
+                .is-selected {
+                    color: var(--vcn-selected-text-color);
+                }
+            }
+
+            &.is-selected {
+                background-color: var(--vcn-calendar-selected-bg-color)
+            }
+        }
+    }
+}
 </style>

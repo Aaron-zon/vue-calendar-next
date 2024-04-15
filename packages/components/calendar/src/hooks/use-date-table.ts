@@ -4,13 +4,12 @@ import localeData from 'dayjs/plugin/localeData'
 import { useLocale } from '@vue-calendar-next/hooks'
 import { rangeArr, getPrevMonthLastDays, getMonthDays, toNestedArr } from './use-utils'
 
-import type { ComputedRef} from 'vue'
 import type { Dayjs } from 'dayjs'
 import type { EventList, EventType } from './use-calendar'
 
 export interface DateTableProps {
     date: Dayjs
-    selectedDay: ComputedRef
+    selectedDay: Dayjs
     range?: [Dayjs, Dayjs]
     events?: EventList
 }

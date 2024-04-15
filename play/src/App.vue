@@ -1,19 +1,31 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const date = ref('2024/04/02')
+import dayjs from "dayjs"
+const now1 = dayjs()
+
+const date = ref(now1)
+// const range = [dayjs('2024-01-02'), dayjs(2024-01-17)]
+
 </script>
 
 <template>
-  <div class="play">
-    <VnCalendar v-model:modelValue="date"></VnCalendar>
+    <div class="play">
+        <div class="calendar-wrapper">
+            <VnCalendar v-model:modelValue="date"></VnCalendar>
+<!--            <VnCalendar :range="range"></VnCalendar>-->
+        </div>
   </div>
 </template>
 
 <style scoped>
 .play {
-    border: 1px solid black;
-    width: 800px;
-    //height: 500px;
-    margin: 100px auto;
+    box-sizing: border-box;
+    padding: 100px 0;
+    background-color: #eee;
+}
+
+.calendar-wrapper {
+    width: 1100px;
+    margin: 0 auto;
 }
 </style>

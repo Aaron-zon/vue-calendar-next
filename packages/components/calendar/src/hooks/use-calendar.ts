@@ -2,24 +2,24 @@ import { ref, computed } from 'vue'
 import dayjs from 'dayjs'
 import { useLocale } from '@vue-calendar-next/hooks'
 
-import type { ComputedRef } from 'vue'
+import type { Ref, ComputedRef } from 'vue'
 import type { Dayjs } from 'dayjs'
 
 export type VcnCalendarEmit = Function
 
 export interface VcnCalendarProps {
-    modelValue?: Date | string,
-    range?: string[]
+    modelValue?: Date | string | Dayjs
+    range?: Date[] | string[] | Dayjs[]
     headerLayout?: Record<string , string | null>
     toolbarInfo?: Record<string, ToolbarInfo | string>
     events?: EventList
 }
 
 export type ToolbarInfo = {
-    text?: string,
-    icon?: string,
+    text?: string
+    icon?: string
     class?: string | string[]
-    callback?: Function | null,
+    callback?: Function | null
 }
 
 export type EventList = EventType[]
@@ -36,7 +36,7 @@ const now = dayjs().locale(lang.value)
 
 export const useCalendar = (props: VcnCalendarProps, emit: VcnCalendarEmit) => {
 
-    const selectedDay = ref()
+    const selectedDay: Ref<Dayjs> = ref()
 
     const prevMonthDayjs: ComputedRef<Dayjs> = computed(() => date.value.subtract(1, 'month').date(1))
     const nextMonthDayjs: ComputedRef<Dayjs> = computed(() => date.value.add(1, 'month').date(1))
@@ -58,11 +58,11 @@ export const useCalendar = (props: VcnCalendarProps, emit: VcnCalendarEmit) => {
      * The selected day
      */
     const realSelectedDay = computed({
-        get() {
-            if (!props.modelValue) return realSelectedDay.value
+        get(): Dayjs {
+            if (!props.modelValue) return selectedDay.value
             return date.value
         },
-        set(val) {
+        set(val: Dayjs) {
             if (!val) return
             selectedDay.value = val
             const result = val.toDate()
@@ -209,6 +209,7 @@ export const useCalendar = (props: VcnCalendarProps, emit: VcnCalendarEmit) => {
     return {
         date,
         realSelectedDay,
+        validatedRange,
         selectDate,
         pickDay,
     }

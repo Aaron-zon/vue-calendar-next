@@ -12,6 +12,7 @@ export interface VcnCalendarProps {
     range?: Date[] | string[] | Dayjs[]
     headerLayout?: Record<string , string | null>
     toolbarInfo?: Record<string, ToolbarInfo | string>
+    format?: string
     events?: EventList
 }
 

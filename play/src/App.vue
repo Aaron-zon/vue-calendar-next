@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import dayjs from "dayjs"
+import dayjs from 'dayjs'
 const now1 = dayjs()
 
 const date = ref(now1)
@@ -11,7 +11,7 @@ const date = ref(now1)
 <template>
     <div class="play">
         <div class="calendar-wrapper">
-            <VnCalendar v-model:modelValue="date"></VnCalendar>
+            <VnCalendar v-model:modelValue="date" format="M月 YYYY年"></VnCalendar>
 <!--            <VnCalendar :range="range"></VnCalendar>-->
         </div>
   </div>

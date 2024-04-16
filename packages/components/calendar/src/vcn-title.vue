@@ -1,15 +1,24 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {computed, type ComputedRef} from 'vue'
+import dayjs from 'dayjs';
 import { useLocale } from '@vue-calendar-next/hooks'
 
-const props = defineProps<{date: any}>()
+import type { Dayjs } from 'dayjs'
+
+const props = defineProps<{
+    date: ComputedRef<Dayjs>
+    format?: string
+}>()
 
 const { t } = useLocale()
 
 const i18nMonthDate = computed(() => {
+    if (props.format) return dayjs(props.date.value).format(props.format)
+
     const month = t(`el.datepicker.month.${props.date.value.format('M')}`)
     const year = `${props.date.value.year()}${t('el.datepicker.year')}`
     return `${month} ${year}`
+
 })
 
 </script>

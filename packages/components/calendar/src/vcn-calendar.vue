@@ -42,7 +42,7 @@ const vcnHeaderGroupProps = computed(() => {
 
     // title
     const title = {
-        bind: { date }
+        bind: { date, format: props.format }
     }
     merge(toolbarInfo, {title})
 

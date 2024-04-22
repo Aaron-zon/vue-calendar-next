@@ -158,6 +158,44 @@ const eventClass = (event: EventType) => {
                 .is-selected {
                     color: var(--vcn-selected-text-color);
                 }
+
+                .vcn-day-grid-day-events {
+                    .vcn-all-day-event {
+                        background-color: var(--vcn-event-bg-color);
+                        border: 1px solid var(--vcn-event-border-color);
+                        border-radius: 5px;
+                        color: var(--vcn-event-text-color);
+                    }
+
+                    .vcn-event {
+                        display: flex;
+                        align-items: center;
+                        text-align: left;
+                        position: relative;
+                        font-size: 12px;
+                        margin-left: 2px;
+                        margin-right: 2px;
+                        height: 16px;
+                        line-height: 16px;
+                        user-select: none;
+                        -webkit-user-drag: none;
+                        -moz-user-drag: none;
+                        user-drag: none;
+
+                        .vcn-day-grid-event-dot {
+                            border: calc(var(--vcn-daygrid-event-dot-width) / 2) solid var(--vcn-event-border-color);
+                            border-radius: calc(var(--vcn-daygrid-event-dot-width) / 2);
+                            box-sizing: content-box;
+                            height: 0;
+                            margin: 0 4px;
+                        }
+
+                        .vcn-event-time {
+                            margin-right: 3px;
+                            font-weight: 500;
+                        }
+                    }
+                }
             }
 
             &.is-selected {

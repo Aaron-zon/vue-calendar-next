@@ -54,7 +54,7 @@ export const useDateTable = (props: DateTableProps) => {
             ).map((index) => ({
                 text: start.date() + index,
                 type: 'current',
-                date: props.date.set('date', start.date() + index).format('YYYY-MM-DD'),
+                // date: props.date.set('date', start.date() + index).format('YYYY-MM-DD'),
             }));
 
             const rowLen = 6 - (Math.floor(currentMonthRange.length / 7));
@@ -71,7 +71,7 @@ export const useDateTable = (props: DateTableProps) => {
             ).map((_, index) => ({
                 text: index + 1,
                 type: 'next',
-                date: props.date.add(1, 'month').set('date', index + 1).format('YYYY-MM-DD'),
+                // date: props.date.add(1, 'month').set('date', index + 1).format('YYYY-MM-DD'),
             }));
 
             days = currentMonthRange.concat(nextMonthRange);
@@ -149,6 +149,7 @@ export const useDateTable = (props: DateTableProps) => {
                 return dayjs(a.start).valueOf() - dayjs(b.start).valueOf();
             })
         }
+        console.log(result)
         return result;
     })
 

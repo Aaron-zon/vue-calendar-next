@@ -9,7 +9,7 @@ import VcnDateTable from './vcn-date-table.vue'
 import type { VcnCalendarProps } from './hooks/use-calendar'
 import type { Layout } from './hooks/use-toolbar'
 
-const COMPONENT_NAME = 'VnCalendar'
+const COMPONENT_NAME = 'VcnCalendar'
 defineOptions({ name: COMPONENT_NAME })
 
 const props = withDefaults(defineProps<VcnCalendarProps>(), {
@@ -84,6 +84,7 @@ const vcnHeaderGroupProps = computed(() => {
                               :selected-day="realSelectedDay"
                               :range="range_"
                               :hide-header="index !== 0"
+                              :events
                               @pick="pickDay" />
             </template>
         </div>

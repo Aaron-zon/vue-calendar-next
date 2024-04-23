@@ -69,7 +69,7 @@ const vcnHeaderGroupProps = computed(() => {
 <template>
     <div class="vcn-calendar">
         <div class="vcn-header">
-            <slot>
+            <slot name="header">
                 <VcnHeaderGroup v-bind="vcnHeaderGroupProps" ></VcnHeaderGroup>
             </slot>
         </div>
@@ -92,11 +92,11 @@ const vcnHeaderGroupProps = computed(() => {
 </template>
 
 <style lang="scss">
-@import "./style/base";
+@import "styles/base";
 </style>
 <style lang="scss" scoped>
 .vcn-calendar {
-    background-color: var(--vcn-bg-color);
+    background-color: var(--vcn-c-bg-color);
     background-color: #fff;
     padding: 12px;
 

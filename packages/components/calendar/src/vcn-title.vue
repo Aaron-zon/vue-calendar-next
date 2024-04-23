@@ -15,8 +15,8 @@ const { t } = useLocale()
 const i18nMonthDate = computed(() => {
     if (props.format) return dayjs(props.date.value).format(props.format)
 
-    const month = t(`el.datepicker.month.${props.date.value.format('M')}`)
-    const year = `${props.date.value.year()}${t('el.datepicker.year')}`
+    const month = t(`vcn.datepicker.month.${props.date.value.format('M')}`)
+    const year = `${props.date.value.year()}${t('vcn.datepicker.year')}`
     return `${month} ${year}`
 
 })

@@ -44,19 +44,19 @@ const select = () => {
     border-radius: 8px;
 
     &__primary {
-        background-color: var(--vcn-button-bg-color);
-        border-color: var(--vcn-button-border-color);
-        color: var(--vcn-button-text-color);
+        background-color: var(--vcn-c-button-bg-color);
+        border-color: var(--vcn-c-button-border-color);
+        color: var(--vcn-c-button-text-color);
 
         &:hover {
-            background-color: var(--vcn-button-hover-bg-color);
-            border-color: var(--vcn-button-hover-border-color);
+            background-color: var(--vcn-c-button-hover-bg-color);
+            border-color: var(--vcn-c-button-hover-border-color);
         }
 
         &:active {
-            background-color: var(--vcn-button-active-bg-color);
-            border-color: var(--vcn-button-active-border-color);
-            box-shadow: var(--vcn-button-active-box-shadow);
+            background-color: var(--vcn-c-button-active-bg-color);
+            border-color: var(--vcn-c-button-active-border-color);
+            box-shadow: var(--vcn-c-button-active-box-shadow);
         }
     }
 }

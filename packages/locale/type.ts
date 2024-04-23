@@ -1,9 +1,9 @@
 export type Language = {
     name: string,
-    el: El
+    vcn: VCN
 }
 
-export type El = {
+export type VCN = {
     "datepicker": {
         "activeMonth": string,
         "activeWeek": string,

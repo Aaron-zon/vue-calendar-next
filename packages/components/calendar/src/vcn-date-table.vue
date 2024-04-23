@@ -121,12 +121,12 @@ const eventClass = (event: EventType) => {
 
         .vcn-col {
             flex: 1;
-            border: 1px solid var(--vcn-border-color);
+            border: 1px solid var(--vcn-c-border-color);
             margin-left: -1px;
             margin-top: -1px;
 
             .vcn-day-grid-day-frame {
-                height: var(--vcn-calendar-cell-width);
+                height: var(--vcn-c-calendar-cell-width);
 
                 .vcn-day-grid-day-top {
                     user-select: none;
@@ -141,7 +141,7 @@ const eventClass = (event: EventType) => {
                         user-select: none;
 
                         &:hover {
-                            border-bottom: 1px solid var(--vcn-a-hover-border-color);
+                            border-bottom: 1px solid var(--vcn-c-a-hover-border-color);
                         }
                     }
                 }
@@ -151,20 +151,20 @@ const eventClass = (event: EventType) => {
                 }
 
                 .is-today {
-                    color: var(--vcn-today-text-color);
+                    color: var(--vcn-c-today-text-color);
                     font-weight: 600;
                 }
 
                 .is-selected {
-                    color: var(--vcn-selected-text-color);
+                    color: var(--vcn-c-selected-text-color);
                 }
 
                 .vcn-day-grid-day-events {
                     .vcn-all-day-event {
-                        background-color: var(--vcn-event-bg-color);
-                        border: 1px solid var(--vcn-event-border-color);
+                        background-color: var(--vcn-c-event-bg-color);
+                        border: 1px solid var(--vcn-c-event-border-color);
                         border-radius: 5px;
-                        color: var(--vcn-event-text-color);
+                        color: var(--vcn-c-event-text-color);
                     }
 
                     .vcn-event {
@@ -183,8 +183,8 @@ const eventClass = (event: EventType) => {
                         user-drag: none;
 
                         .vcn-day-grid-event-dot {
-                            border: calc(var(--vcn-daygrid-event-dot-width) / 2) solid var(--vcn-event-border-color);
-                            border-radius: calc(var(--vcn-daygrid-event-dot-width) / 2);
+                            border: calc(var(--vcn-c-daygrid-event-dot-width) / 2) solid var(--vcn-event-border-color);
+                            border-radius: calc(var(--vcn-c-daygrid-event-dot-width) / 2);
                             box-sizing: content-box;
                             height: 0;
                             margin: 0 4px;
@@ -199,7 +199,7 @@ const eventClass = (event: EventType) => {
             }
 
             &.is-selected {
-                background-color: var(--vcn-calendar-selected-bg-color)
+                background-color: var(--vcn-c-calendar-selected-bg-color)
             }
         }
     }

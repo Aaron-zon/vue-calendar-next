@@ -17,8 +17,8 @@
     display: flex;
 }
 .calendar-wrapper {
-    //width: 230px;
+    width: 320px;
     margin: 0 auto;
-    border: 1px solid black;
+    //border: 1px solid black;
 }
 </style>

@@ -1,7 +1,7 @@
 import { type Language } from './type'
 const zhCn:Language = {
     name: 'zhCn',
-    el: {
+    vcn: {
         datepicker: {
             activeMonth: '月',
             activeWeek: '周',

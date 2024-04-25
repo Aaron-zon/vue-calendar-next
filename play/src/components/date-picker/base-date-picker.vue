@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import dayjs from 'dayjs'
+const date = dayjs('2024-05-28')
 </script>
 
 <template>
     <div class="play">
         <div class="calendar-wrapper">
-            <VcnDatePicker></VcnDatePicker>
+            <VcnDatePicker v-model:modelValue="date"></VcnDatePicker>
         </div>
     </div>
 </template>

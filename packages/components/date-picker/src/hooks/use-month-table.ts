@@ -1,13 +1,21 @@
-import { computed } from 'vue'
+import {computed, ref} from 'vue'
 import { useLocale } from '@vue-calendar-next/hooks'
+
+import type { Ref } from 'vue'
+import type { Dayjs } from 'dayjs'
 
 const { t } = useLocale();
 
-export const useMonthTable = () => {
+export type MonthTableProps = {
+    date: Dayjs,
+    // year: Dayjs
+}
+
+export const useMonthTable = (props: MonthTableProps) => {
     const MONTH_TABLE = [
-        [1, 2, 3, 4],
-        [5, 6, 7, 8],
-        [9, 10, 11, 12]
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11]
     ]
 
     const monthTable = computed(() => {
@@ -20,7 +28,24 @@ export const useMonthTable = () => {
         }))
     })
 
+    const selectedMonth: Ref<Dayjs> = ref()
+
+    const month = computed(() => {
+        if (!selectedMonth.value) {
+            setSelectedMonth(props.date)
+        }
+
+        return selectedMonth.value
+    })
+
+    const setSelectedMonth = (val: Dayjs) => {
+        if (!val) return
+        selectedMonth.value = val.startOf('month')
+    }
+
     return {
-        monthTable
+        monthTable,
+        month,
+        setSelectedMonth
     }
 }

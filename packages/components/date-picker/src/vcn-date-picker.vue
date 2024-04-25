@@ -1,16 +1,25 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useDatePicker } from './hooks/use-date-picker'
 import VcnDatePickerHeader from './vcn-date-picker-header.vue'
 import VcnDatePickerBody from './vcn-date-picker-table.vue'
 import VcnDatePickerMonthBody from './vcn-month-table.vue'
 import VcnDatePickerYearBody from './vcn-year-table.vue'
+
+import type { DatePickerProps } from './hooks/use-date-picker'
+
 const COMPONENT_NAME = 'VcnDatePicker'
 defineOptions({ name: COMPONENT_NAME })
+
+const props = defineProps<DatePickerProps>()
+const emit = defineEmits(['selectedMonth'])
+
+const { date, selectedDay, pickDay } = useDatePicker(props, emit)
 
 const bodyMode = ref(1)
 
 const selectedMonth = (month) => {
-    console.log(month)
+    emit('selectedMonth', { month })
 }
 </script>
 
@@ -22,9 +31,17 @@ const selectedMonth = (month) => {
             </slot>
         </div>
         <div class="vcn-dp-body">
-            <VcnDatePickerBody v-if="bodyMode === 0"/>
-            <VcnDatePickerMonthBody v-else-if="bodyMode === 1" @selected="selectedMonth" />
-            <VcnDatePickerYearBody v-else-if="bodyMode === 2"/>
+            <VcnDatePickerBody
+                v-if="bodyMode === 0"
+            />
+            <VcnDatePickerMonthBody
+                v-else-if="bodyMode === 1"
+                @selected="selectedMonth"
+                :date
+            />
+            <VcnDatePickerYearBody
+                v-else-if="bodyMode === 2"
+            />
         </div>
         <div class="vcn-dp-footer">
 

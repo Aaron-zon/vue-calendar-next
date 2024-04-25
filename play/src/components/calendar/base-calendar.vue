@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import dayjs from 'dayjs'
-const now = dayjs()
+const now = dayjs('2024-04-29')
 
 const date = ref(now)
 // const range = [dayjs('2024-01-02'), dayjs(2024-01-17)]

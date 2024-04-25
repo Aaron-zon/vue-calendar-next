@@ -5,7 +5,6 @@ import type { DateTableProps, CalendarDateCell } from './hooks/use-date-table.js
 import type { EventType } from './hooks/use-calendar'
 
 const props = defineProps<DateTableProps>()
-
 const emit = defineEmits(['pick'])
 
 const { weekDays, rows, eventMap } = useDateTable(props);

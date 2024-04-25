@@ -1,13 +1,28 @@
 <script setup lang="ts">
 import { useMonthTable } from './hooks/use-month-table'
+import dayjs from 'dayjs'
+import type { MonthTableProps } from './hooks/use-month-table'
+import {computed} from "vue";
 
-const { monthTable } = useMonthTable()
-console.log(monthTable.value)
+const props = defineProps<MonthTableProps>()
 const emit = defineEmits(['selected'])
 
-const selected = (col) => {
-    emit('selected', col)
+const { monthTable, month, setSelectedMonth } = useMonthTable(props)
+
+const today = dayjs()
+
+const selected = (monthVal: number) => {
+    setSelectedMonth(monthVal)
+    emit('selected', monthVal)
 }
+
+const monthClass = (monthVal: number) => {
+    return {
+        // 'is-today': props.year.format('YYYY') === today.format('YYYY') && monthVal === today.month(),
+        // 'is-selected': monthVal === month.value,
+    }
+}
+
 </script>
 
 <template>
@@ -15,7 +30,7 @@ const selected = (col) => {
         <table class="vcn-month-table">
             <tbody>
                 <tr v-for="(monthRow, rowIdx) in monthTable" :key="rowIdx">
-                    <td v-for="month in monthRow" :key="month.value" @click="selected(col)">
+                    <td v-for="month in monthRow" :key="month.value" :class="monthClass(month.value)" @click="selected(month.value)">
                         <div>
                             <span class="cell">{{ month.name }}</span>
                         </div>
@@ -42,6 +57,31 @@ const selected = (col) => {
                 padding: 8px 0;
                 cursor: pointer;
 
+                &.is-today {
+                    .cell {
+                        color: var(--vcn-dp-color-primary);
+                        font-weight: bold;
+                    }
+                }
+
+                &.is-selected {
+                    div {
+                        border-radius: 24px;
+                        margin-left: 3px;
+                        margin-right: 3px;
+                    }
+
+                    .cell {
+                        color: #ffffff;
+                        background-color: var(--vcn-dp-active-color);
+
+                        &:hover {
+                            color: #ffffff;
+                        }
+                    }
+
+                }
+
                 div {
                     height: 48px;
                     padding: 6px 0;
@@ -55,10 +95,13 @@ const selected = (col) => {
                         color: var(--vcn-dp-text-color-regular);
                         margin: 0 auto;
                         border-radius: 18px;
+                        font-size: 12px;
 
                         &:hover {
                             color: var(--vcn-dp-hover-text-color);
                         }
+
+
                     }
                 }
 

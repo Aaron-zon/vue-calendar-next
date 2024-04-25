@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { useDataTable } from './hooks/use-data-table'
+import { useMonthTable } from './hooks/use-month-table'
 
-const { monthTable } = useDataTable()
+const { monthTable } = useMonthTable()
 console.log(monthTable.value)
+const emit = defineEmits(['selected'])
+
+const selected = (col) => {
+    emit('selected', col)
+}
 </script>
 
 <template>
     <div class="vcn-date-picker-month-body">
         <table class="vcn-month-table">
             <tbody>
-                <tr v-for="(row, rowIdx) in monthTable" :key="rowIdx">
-                    <td v-for="col in row" :key="col">
+                <tr v-for="(monthRow, rowIdx) in monthTable" :key="rowIdx">
+                    <td v-for="month in monthRow" :key="month.value" @click="selected(col)">
                         <div>
-                            <span class="cell">{{ col }}</span>
+                            <span class="cell">{{ month.name }}</span>
                         </div>
                     </td>
                 </tr>
@@ -23,8 +28,8 @@ console.log(monthTable.value)
 
 <style scoped lang="scss">
 .vcn-date-picker-month-body {
-    margin: 15px;
-    margin-top: 0;
+    margin: 0 15px 15px;
+    border-top: 1px solid var(--vcn-dp-border-color);
 
     .vcn-month-table {
         width: 100%;

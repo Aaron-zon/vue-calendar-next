@@ -9,6 +9,9 @@ defineOptions({ name: COMPONENT_NAME })
 
 const bodyMode = ref(1)
 
+const selectedMonth = (month) => {
+    console.log(month)
+}
 </script>
 
 <template>
@@ -20,7 +23,7 @@ const bodyMode = ref(1)
         </div>
         <div class="vcn-dp-body">
             <VcnDatePickerBody v-if="bodyMode === 0"/>
-            <VcnDatePickerMonthBody v-else-if="bodyMode === 1" />
+            <VcnDatePickerMonthBody v-else-if="bodyMode === 1" @selected="selectedMonth" />
             <VcnDatePickerYearBody v-else-if="bodyMode === 2"/>
         </div>
         <div class="vcn-dp-footer">

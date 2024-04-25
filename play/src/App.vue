@@ -5,8 +5,8 @@ import BaseDatePicker from '@/components/date-picker/base-date-picker.vue'
 </script>
 
 <template>
-<!--    <BaseCalendar></BaseCalendar>-->
-    <BaseDatePicker></BaseDatePicker>
+    <BaseCalendar></BaseCalendar>
+<!--    <BaseDatePicker></BaseDatePicker>-->
 </template>
 
 <style scoped>

@@ -8,7 +8,7 @@ import ArrowLeft from '@vue-calendar-next/components/icon/arrow-left.vue'
 import type { DatePickerHeaderProps } from './hooks/use-date-picker-header'
 
 const props = defineProps<DatePickerHeaderProps>()
-const emit = defineEmits(['changeMode'])
+const emit = defineEmits(['changeMode', 'changeYear'])
 
 const { 
     yearText, 
@@ -29,7 +29,7 @@ const {
             <button class="vcn-dp-prev-year vcn-dp-prev-btn" @click="dArrowLeftClick">
                 <DArrowLeft />
             </button>
-            <button class="vcn-dp-prev-month vcn-dp-prev-btn" v-if="props.mode == 0" @click="ArrowLeftClick">
+            <button class="vcn-dp-prev-month vcn-dp-prev-btn" v-if="props.mode == 0" @click="arrowLeftClick">
                 <ArrowLeft />
             </button>
         </span>

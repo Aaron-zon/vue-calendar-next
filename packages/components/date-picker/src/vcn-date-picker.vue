@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useDatePicker, MODE_1 } from './hooks/use-date-picker'
+import { useDatePicker } from './hooks/use-date-picker'
 import VcnDatePickerHeader from './vcn-date-picker-header.vue'
 import VcnDatePickerBody from './vcn-date-picker-table.vue'
 import VcnDatePickerMonthBody from './vcn-month-table.vue'
 import VcnDatePickerYearBody from './vcn-year-table.vue'
 
-import type { DatePickerProps, Mode } from './hooks/use-date-picker'
+import type { DatePickerProps } from './hooks/use-date-picker'
 
 const COMPONENT_NAME = 'VcnDatePicker'
 defineOptions({ name: COMPONENT_NAME })
@@ -14,13 +13,15 @@ defineOptions({ name: COMPONENT_NAME })
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits(['selectedMonth'])
 
-const { date, year, month } = useDatePicker(props, emit)
-
-const mode: Mode = ref(MODE_1)
-
-const selectedMonth = ({date, month}) => {
-    emit('selectedMonth', { date, month })
-}
+const { 
+    mode, 
+    date, 
+    year, 
+    month, 
+    changeMode, 
+    changeYear, 
+    selectedMonth 
+} = useDatePicker(props, emit)
 
 </script>
 
@@ -28,7 +29,11 @@ const selectedMonth = ({date, month}) => {
     <div class="vcn-date-picker">
         <div class="vcn-dp-header">
             <slot name="header">
-                <VcnDatePickerHeader :mode :date :year :month />
+                <VcnDatePickerHeader 
+                    :mode :date :year :month 
+                    @changeMode="changeMode"
+                    @changeYear="changeYear"
+                />
             </slot>
         </div>
         <div class="vcn-dp-body">

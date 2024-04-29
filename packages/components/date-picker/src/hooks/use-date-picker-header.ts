@@ -47,10 +47,35 @@ export const useDatePickerHeader = (props: DatePickerHeaderProps, emit: Function
         if (props.mode === MODE_0) emit('changeMode', MODE_1)
     }
 
+    const arrowLeftClick = () => {
+
+    }
+
+    const arrowRightClick = () => {
+
+    }
+
+    const dArrowLeftClick = () => {
+        if (props.mode === MODE_1) {
+            emit('changeYear', props.year - 1)
+        }
+
+    }
+
+    const dArrowRightClick = () => {
+        if (props.mode === MODE_1) {
+            emit('changeYear', props.year + 1)
+        }
+    }
+
     return {
         yearText,
         monthText,
         yearSearch,
         monthSearch,
+        arrowLeftClick,
+        arrowRightClick,
+        dArrowLeftClick,
+        dArrowRightClick,
     }
 }

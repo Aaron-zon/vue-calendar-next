@@ -20,7 +20,7 @@ const selected = (monthVal: number) => {
 const monthClass = (monthVal: number) => {
     return {
         'is-today': props.year === today.year() && monthVal === today.month(),
-        'is-selected': monthVal === month.value.month(),
+        'is-selected': props.year === month.value!.year() && monthVal === month.value!.month(),
     }
 }
 

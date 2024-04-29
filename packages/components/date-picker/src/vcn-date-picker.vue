@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useDatePicker } from './hooks/use-date-picker'
+import { useDatePicker, MODE_1 } from './hooks/use-date-picker'
 import VcnDatePickerHeader from './vcn-date-picker-header.vue'
 import VcnDatePickerBody from './vcn-date-picker-table.vue'
 import VcnDatePickerMonthBody from './vcn-month-table.vue'
 import VcnDatePickerYearBody from './vcn-year-table.vue'
 
-import type { DatePickerProps } from './hooks/use-date-picker'
+import type { DatePickerProps, Mode } from './hooks/use-date-picker'
 
 const COMPONENT_NAME = 'VcnDatePicker'
 defineOptions({ name: COMPONENT_NAME })
@@ -14,33 +14,36 @@ defineOptions({ name: COMPONENT_NAME })
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits(['selectedMonth'])
 
-const { date, selectedDay, pickDay } = useDatePicker(props, emit)
+const { date, year, month } = useDatePicker(props, emit)
 
-const bodyMode = ref(1)
+const mode: Mode = ref(MODE_1)
 
-const selectedMonth = (month) => {
-    emit('selectedMonth', { month })
+const selectedMonth = ({date, month}) => {
+    emit('selectedMonth', { date, month })
 }
+
 </script>
 
 <template>
     <div class="vcn-date-picker">
         <div class="vcn-dp-header">
             <slot name="header">
-                <VcnDatePickerHeader />
+                <VcnDatePickerHeader :mode :date :year :month />
             </slot>
         </div>
         <div class="vcn-dp-body">
             <VcnDatePickerBody
-                v-if="bodyMode === 0"
+                v-if="mode === 0"
             />
             <VcnDatePickerMonthBody
-                v-else-if="bodyMode === 1"
+                v-else-if="mode === 1"
                 @selected="selectedMonth"
+                :year
                 :date
+                :month
             />
             <VcnDatePickerYearBody
-                v-else-if="bodyMode === 2"
+                v-else-if="mode === 2"
             />
         </div>
         <div class="vcn-dp-footer">

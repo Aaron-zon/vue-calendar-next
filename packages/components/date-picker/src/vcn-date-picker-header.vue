@@ -1,31 +1,47 @@
 <script setup lang="ts">
+import { useDatePickerHeader } from './hooks/use-date-picker-header'
 import DArrowRight from '@vue-calendar-next/components/icon/d-arrow-right.vue'
 import DArrowLeft from '@vue-calendar-next/components/icon/d-arrow-left.vue'
 import ArrowRight from '@vue-calendar-next/components/icon/arrow-right.vue'
 import ArrowLeft from '@vue-calendar-next/components/icon/arrow-left.vue'
 
+import type { DatePickerHeaderProps } from './hooks/use-date-picker-header'
+
+const props = defineProps<DatePickerHeaderProps>()
+const emit = defineEmits(['changeMode'])
+
+const { 
+    yearText, 
+    monthText,
+    yearSearch,
+    monthSearch,
+    arrowLeftClick,
+    arrowRightClick,
+    dArrowLeftClick,
+    dArrowRightClick,
+} = useDatePickerHeader(props, emit)
 
 </script>
 
 <template>
     <div class="vcn-date-picker-header">
         <span class="vcn-dp-prev">
-            <button class="vcn-dp-prev-year vcn-dp-prev-btn">
+            <button class="vcn-dp-prev-year vcn-dp-prev-btn" @click="dArrowLeftClick">
                 <DArrowLeft />
             </button>
-            <button class="vcn-dp-prev-month vcn-dp-prev-btn">
+            <button class="vcn-dp-prev-month vcn-dp-prev-btn" v-if="props.mode == 0" @click="ArrowLeftClick">
                 <ArrowLeft />
             </button>
         </span>
         <span class="vcn-dp-title">
-            <span class="vcn-dp-header-text">2024</span>
-            <span class="vcn-dp-header-text">4月</span>
+            <span class="vcn-dp-header-text" @click="yearSearch">{{ yearText }}</span>
+            <span class="vcn-dp-header-text" v-if="props.mode == 0" @click="monthSearch">{{ monthText }}</span>
         </span>
         <span class="vcn-dp-next">
-            <button class="vcn-dp-next-month vcn-dp-next-btn">
+            <button class="vcn-dp-next-month vcn-dp-next-btn" v-if="props.mode == 0" @click="arrowRightClick">
                 <ArrowRight />
             </button>
-            <button class="vcn-dp-next-year vcn-dp-next-btn">
+            <button class="vcn-dp-next-year vcn-dp-next-btn" @click="dArrowRightClick">
                 <DArrowRight />
             </button>
         </span>

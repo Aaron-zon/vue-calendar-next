@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useMonthTable } from './hooks/use-month-table'
 import dayjs from 'dayjs'
+
 import type { MonthTableProps } from './hooks/use-month-table'
-import {computed} from "vue";
 
 const props = defineProps<MonthTableProps>()
 const emit = defineEmits(['selected'])
@@ -12,14 +12,15 @@ const { monthTable, month, setSelectedMonth } = useMonthTable(props)
 const today = dayjs()
 
 const selected = (monthVal: number) => {
-    setSelectedMonth(monthVal)
-    emit('selected', monthVal)
+    const date = dayjs().year(props.year).month(monthVal).date(1)
+    setSelectedMonth(date)
+    emit('selected', { date,  month: monthVal})
 }
 
 const monthClass = (monthVal: number) => {
     return {
-        // 'is-today': props.year.format('YYYY') === today.format('YYYY') && monthVal === today.month(),
-        // 'is-selected': monthVal === month.value,
+        'is-today': props.year === today.year() && monthVal === today.month(),
+        'is-selected': monthVal === month.value.month(),
     }
 }
 

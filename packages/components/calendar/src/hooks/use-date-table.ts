@@ -149,7 +149,6 @@ export const useDateTable = (props: DateTableProps) => {
                 return dayjs(a.start).valueOf() - dayjs(b.start).valueOf();
             })
         }
-        console.log(result)
         return result;
     })
 

@@ -8,7 +8,8 @@ const { t } = useLocale();
 
 export type MonthTableProps = {
     date: Dayjs,
-    // year: Dayjs
+    year: number,
+    month: number
 }
 
 export const useMonthTable = (props: MonthTableProps) => {
@@ -28,13 +29,12 @@ export const useMonthTable = (props: MonthTableProps) => {
         }))
     })
 
-    const selectedMonth: Ref<Dayjs> = ref()
+    const selectedMonth: Ref<Dayjs | null> = ref(null)
 
     const month = computed(() => {
         if (!selectedMonth.value) {
             setSelectedMonth(props.date)
         }
-
         return selectedMonth.value
     })
 

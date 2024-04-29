@@ -49,6 +49,7 @@ const {
             />
             <VcnDatePickerYearBody
                 v-else-if="mode === 2"
+                :year
             />
         </div>
         <div class="vcn-dp-footer">

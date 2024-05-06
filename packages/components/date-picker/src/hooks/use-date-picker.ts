@@ -24,7 +24,7 @@ export const useDatePicker = (props: DatePickerProps, emit: Function) => {
 
     const { date, pickDay } = useDate(useDateProp(), emit)
 
-    const mode: Mode = ref(MODE_2)
+    const mode: Mode = ref(MODE_1)
     const year = ref(1970)
     const month = ref(0)
 
@@ -34,6 +34,10 @@ export const useDatePicker = (props: DatePickerProps, emit: Function) => {
 
     const changeYear = (yearVal: number) => {
         year.value = yearVal
+    }
+
+    const selectedYear = (yearVal: number) => {
+        emit('selectedYear', yearVal)
     }
 
     const selectedMonth = ({date, month}) => {
@@ -53,6 +57,7 @@ export const useDatePicker = (props: DatePickerProps, emit: Function) => {
         month,
         changeMode,
         changeYear,
+        selectedYear,
         selectedMonth,
     }
 }

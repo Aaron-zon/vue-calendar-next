@@ -3,18 +3,22 @@ import { useYearTable } from './hooks/use-year-table'
 import dayjs from 'dayjs'
 
 import type { YearTableProps } from './hooks/use-year-table'
+
 const props = defineProps<YearTableProps>()
-
-const { yearTable } = useYearTable(props)
-
+const emit = defineEmits(['selected'])
+const { yearTable, year, setSelectedYear } = useYearTable(props)
 const today = dayjs()
 
 const addClass = (yearVal: number) => {
-    console.log(yearTable.value[0][0])
     return {
         'is-today': today.year() === yearVal,
-        // 'is-selected':  === yearVal'
+        'is-selected': year.value === yearVal
     }
+}
+
+const selected = (yearVal: number) => {
+    setSelectedYear(yearVal)
+    emit('selected', yearVal)
 }
 </script>
 
@@ -23,7 +27,7 @@ const addClass = (yearVal: number) => {
         <table class="vcn-year-table">
             <tbody>
                 <tr v-for="(yearRow, rowIdx) in yearTable" :key="rowIdx">
-                    <td v-for="year in yearRow" :key="year" :class="addClass(year)">
+                    <td v-for="year in yearRow" :key="year" :class="addClass(year)" @click="selected(year)">
                         <div>
                             <span class="cell">{{ year }}</span>
                         </div>

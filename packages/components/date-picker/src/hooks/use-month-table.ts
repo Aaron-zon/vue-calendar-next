@@ -7,8 +7,8 @@ import type { Dayjs } from 'dayjs'
 const { t } = useLocale();
 
 export type MonthTableProps = {
-    date: Dayjs,
-    year: number,
+    date: Dayjs
+    year: number
     month: number
 }
 

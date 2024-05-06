@@ -11,7 +11,7 @@ const COMPONENT_NAME = 'VcnDatePicker'
 defineOptions({ name: COMPONENT_NAME })
 
 const props = defineProps<DatePickerProps>()
-const emit = defineEmits(['selectedMonth'])
+const emit = defineEmits(['selectedMonth', 'selectedYear'])
 
 const { 
     mode, 
@@ -19,7 +19,8 @@ const {
     year, 
     month, 
     changeMode, 
-    changeYear, 
+    changeYear,
+    selectedYear,
     selectedMonth 
 } = useDatePicker(props, emit)
 
@@ -49,6 +50,8 @@ const {
             />
             <VcnDatePickerYearBody
                 v-else-if="mode === 2"
+                @selected="selectedYear"
+                :date
                 :year
             />
         </div>

@@ -1,6 +1,10 @@
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
+
+import type { Ref } from 'vue'
+import type { Dayjs } from 'dayjs'
 
 export type YearTableProps = {
+    date: Dayjs
     year: number
 }
 
@@ -32,7 +36,23 @@ export const useYearTable = (props: YearTableProps) => {
         return result
     })
 
+    const selectedYear: Ref<number | null> = ref(null)
+
+    const year = computed(() => {
+        if (!selectedYear.value) {
+            setSelectedYear(props.date.year())
+        }
+        return selectedYear.value
+    })
+
+    const setSelectedYear = (val: number) => {
+        if (!val) return
+        selectedYear.value = val
+    }
+
     return {
-        yearTable
+        yearTable,
+        year,
+        setSelectedYear
     }
 }

@@ -24,10 +24,10 @@ export const useDatePickerHeader = (props: DatePickerHeaderProps, emit: Function
         let result: string = ''
         switch (props.mode) {
             case 0: // date
-                result = props.year.toString()
+                result = `${props.year}`
                 break
             case 1: // month
-                result = props.year.toString()
+                result = `${props.year}`
                 break
             case 2: // year
                 result = `${yearRange.value[0]} ~ ${yearRange.value[1]}`

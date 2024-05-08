@@ -1,5 +1,5 @@
 import { ref, computed, inject } from 'vue'
-
+import dayjs from 'dayjs'
 import type { Ref } from 'vue'
 import type { Dayjs } from 'dayjs'
 
@@ -9,39 +9,50 @@ export type YearTableProps = {
 }
 
 export const useYearTable = (props: YearTableProps) => {
-    const yearCount = inject('yearCount')
-    const rowYearCount = inject('rowYearCount')
+    const yearCount: number = inject('yearCount')!
+    const rowYearCount: number = inject('rowYearCount')!
 
     const yearTable = computed(() => {
         const result: number[][] = []
-
-        const year = props.year
-        const forward = 2
-        const prevYear = Math.floor(yearCount / 2) - forward
-        const nextYear = prevYear + yearCount % 2 + forward * 2
+        const range = findRange(props.year)
         const yearArr: number[] = []
 
-        for (let i = prevYear; i > 0; i -- ) {
-            yearArr.push(year - i)
+        for (let i = range[0]; i <= range[1]; i ++) {
+            yearArr.push(i)
         }
-        for (let i = 0; i < nextYear; i ++) {
-            yearArr.push(year + i)
-        }
-
         for (let i = 0; i < yearCount / rowYearCount; i ++) {
             result[i] = []
             result[i].push(...yearArr.slice(i * rowYearCount, (i + 1) * rowYearCount))
         }
 
-        setYearRange(result[0][0], result[result.length - 1][result[result.length - 1].length - 1])
-        
+        setYearRange(range)
+
         return result
     })
 
-    const setYearRange = (firstYear: number, lastYear: number) => {
+    function findRange(num: number): [number, number] {
+        let start = dayjs().year() - rowYearCount;
+        const rangeVal = yearCount - 1
+
+        while (start > num) {
+            start -= yearCount
+        }
+
+        while (start <= num) {
+            const end = start + rangeVal;
+            if (num >= start && num <= end) {
+                return [start, end];
+            }
+            start += yearCount;
+        }
+    
+        return [num - rangeVal, num];
+    }
+    
+    const setYearRange = (range: [number, number]) => {
         const yearRange: Ref<number[]> = inject('yearRange')!
-        yearRange.value[0] = firstYear
-        yearRange.value[1] = lastYear
+        yearRange.value[0] = range[0]
+        yearRange.value[1] = range[1]
     }
 
 

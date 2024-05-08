@@ -48,17 +48,17 @@ provide('rowYearCount', rowElCount)
         </div>
         <div class="vcn-dp-body">
             <VcnDatePickerBody
-                v-if="mode === 0"
+                v-show="mode === 0"
             />
             <VcnDatePickerMonthBody
-                v-else-if="mode === 1"
+                v-show="mode === 1"
                 @selected="selectedMonth"
                 :year
                 :date
                 :month
             />
             <VcnDatePickerYearBody
-                v-else-if="mode === 2"
+                v-show="mode === 2"
                 @selected="selectedYear"
                 :date
                 :year

@@ -37,6 +37,8 @@ export const useDatePicker = (props: DatePickerProps, emit: Function) => {
     }
 
     const selectedYear = (yearVal: number) => {
+        mode.value = MODE_1
+        changeYear(yearVal)
         emit('selectedYear', yearVal)
     }
 

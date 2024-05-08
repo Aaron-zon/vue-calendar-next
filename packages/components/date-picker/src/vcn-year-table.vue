@@ -6,7 +6,9 @@ import type { YearTableProps } from './hooks/use-year-table'
 
 const props = defineProps<YearTableProps>()
 const emit = defineEmits(['selected'])
-const { yearTable, year, setSelectedYear } = useYearTable(props)
+
+const { year, yearTable, setSelectedYear } = useYearTable(props)
+
 const today = dayjs()
 
 const addClass = (yearVal: number) => {

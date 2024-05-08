@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, inject } from 'vue'
 import { useDatePickerHeader } from './hooks/use-date-picker-header'
 import DArrowRight from '@vue-calendar-next/components/icon/d-arrow-right.vue'
 import DArrowLeft from '@vue-calendar-next/components/icon/d-arrow-left.vue'

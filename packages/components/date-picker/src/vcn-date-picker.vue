@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref, provide } from 'vue'
 import { useDatePicker } from './hooks/use-date-picker'
 import VcnDatePickerHeader from './vcn-date-picker-header.vue'
 import VcnDatePickerBody from './vcn-date-picker-table.vue'
@@ -24,6 +25,14 @@ const {
     selectedMonth 
 } = useDatePicker(props, emit)
 
+const yearRange = ref([0, 0])
+const tableElCount = 12
+const rowElCount = 4
+
+
+provide('yearRange', yearRange)
+provide('yearCount', tableElCount)
+provide('rowYearCount', rowElCount)
 </script>
 
 <template>
@@ -56,7 +65,6 @@ const {
             />
         </div>
         <div class="vcn-dp-footer">
-
         </div>
     </div>
 </template>

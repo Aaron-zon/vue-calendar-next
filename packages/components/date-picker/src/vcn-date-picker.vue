@@ -2,7 +2,7 @@
 import { ref, provide } from 'vue'
 import { useDatePicker } from './hooks/use-date-picker'
 import VcnDatePickerHeader from './vcn-date-picker-header.vue'
-import VcnDatePickerBody from './vcn-date-picker-table.vue'
+import VcnDatePickerBody from './vcn-date-table.vue'
 import VcnDatePickerMonthBody from './vcn-month-table.vue'
 import VcnDatePickerYearBody from './vcn-year-table.vue'
 

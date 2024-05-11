@@ -2,7 +2,7 @@
 import { ref, provide } from 'vue'
 import { useDatePicker } from './hooks/use-date-picker'
 import VcnDatePickerHeader from './vcn-date-picker-header.vue'
-import VcnDatePickerBody from './vcn-date-table.vue'
+import VcnDatePickerBody from './date-table.vue'
 import VcnDatePickerMonthBody from './vcn-month-table.vue'
 import VcnDatePickerYearBody from './vcn-year-table.vue'
 
@@ -49,6 +49,7 @@ provide('rowYearCount', rowElCount)
         <div class="vcn-dp-body">
             <VcnDatePickerBody
                 v-show="mode === 0"
+                :date
             />
             <VcnDatePickerMonthBody
                 v-show="mode === 1"

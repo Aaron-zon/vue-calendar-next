@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs';
-import { useDateTable } from './hooks/use-date-table.js';
-import type { DateTableProps, CalendarDateCell } from './hooks/use-date-table.js';
+import { useDateTable } from './hooks/use-date-table';
+import type { DateTableProps, CalendarDateCell } from './hooks/use-date-table';
 import type { EventType } from './hooks/use-calendar'
 
 const props = defineProps<DateTableProps>()
